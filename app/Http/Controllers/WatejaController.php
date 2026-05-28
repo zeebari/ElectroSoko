@@ -33,7 +33,7 @@ class WatejaController extends Controller
             'maelezo'       => 'nullable|string',
         ]);
         Mteja::create($data);
-        return redirect()->route('wateja.index')->with('mafanikio', 'Mteja ameongezwa!');
+        return redirect()->route('wateja.index')->with('mafanikio', 'تم إضافة العميل!');
     }
 
     public function show(Mteja $wateja)
@@ -75,13 +75,13 @@ class WatejaController extends Controller
             'maelezo'       => 'nullable|string',
         ]);
         $wateja->update($data);
-        return redirect()->route('wateja.index')->with('mafanikio', 'Mteja amebadilishwa!');
+        return redirect()->route('wateja.index')->with('mafanikio', 'تم تعديل العميل!');
     }
 
     public function destroy(Mteja $wateja)
     {
         $wateja->delete();
-        return redirect()->route('wateja.index')->with('mafanikio', 'Mteja amefutwa!');
+        return redirect()->route('wateja.index')->with('mafanikio', 'تم حذف العميل!');
     }
 
     public function sarafu(Mteja $wateja)

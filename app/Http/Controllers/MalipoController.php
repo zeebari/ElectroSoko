@@ -34,6 +34,6 @@ class MalipoController extends Controller
         $uuzaji->save();
 
         return redirect()->route('mauzo.show', $uuzaji)
-            ->with('mafanikio', 'Malipo yameongezwa: ' . format_sarafu($kiasi, $uuzaji->sarafu));
+            ->with('mafanikio', 'تمت إضافة الدفعة: ' . format_sarafu($kiasi, $uuzaji->sarafu));
     }
 }

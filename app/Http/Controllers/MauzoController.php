@@ -104,7 +104,7 @@ class MauzoController extends Controller
             }
         });
 
-        return redirect()->route('mauzo.index')->with('mafanikio', 'Uuzaji umehifadhiwa!');
+        return redirect()->route('mauzo.index')->with('mafanikio', 'تم حفظ المبيعة!');
     }
 
     public function show(Uuzaji $mauzo)
@@ -120,6 +120,6 @@ class MauzoController extends Controller
             Bidhaa::where('id', $item->bidhaa_id)->increment('hisa', $item->idadi);
         }
         $mauzo->delete();
-        return redirect()->route('mauzo.index')->with('mafanikio', 'Uuzaji umefutwa!');
+        return redirect()->route('mauzo.index')->with('mafanikio', 'تم حذف المبيعة!');
     }
 }

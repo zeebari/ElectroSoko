@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="sw" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('kichwa', 'ElectroSoko') — ElectroSoko</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    @vite(['resources/css/app.css'])
     <style>
         [x-cloak] { display: none !important; }
         .sidebar-link { @apply flex items-center gap-3 px-4 py-2.5 rounded-lg text-slate-300 hover:bg-slate-700 hover:text-white transition-all text-sm font-medium; }
@@ -16,7 +16,7 @@
 <div class="flex min-h-screen">
 
     {{-- Sidebar --}}
-    <aside class="w-64 bg-slate-900 flex flex-col fixed inset-y-0 left-0 z-30">
+    <aside class="w-64 bg-slate-900 flex flex-col fixed inset-y-0 right-0 z-30">
         {{-- Logo --}}
         <div class="px-6 py-5 border-b border-slate-700">
             <div class="flex items-center gap-3">
@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <p class="text-white font-bold text-base leading-tight">ElectroSoko</p>
-                    <p class="text-slate-400 text-xs">Mfumo wa Duka</p>
+                    <p class="text-slate-400 text-xs">نظام إدارة المحل</p>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                 </svg>
-                Dashibodi
+                لوحة التحكم
             </a>
 
             <a href="{{ route('bidhaa.index') }}"
@@ -50,7 +50,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                 </svg>
-                Bidhaa
+                المنتجات
             </a>
 
             <a href="{{ route('wateja.index') }}"
@@ -59,7 +59,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
-                Wateja
+                العملاء
             </a>
 
             <a href="{{ route('mauzo.index') }}"
@@ -68,7 +68,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                 </svg>
-                Mauzo
+                المبيعات
             </a>
 
             <a href="{{ route('madeni.index') }}"
@@ -77,7 +77,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                Madeni
+                الديون
             </a>
 
             <div class="pt-4 mt-4 border-t border-slate-700">
@@ -86,7 +86,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
-                    Uuzaji Mpya
+                    بيع جديد
                 </a>
             </div>
         </nav>
@@ -98,15 +98,15 @@
     </aside>
 
     {{-- Main Content --}}
-    <div class="flex-1 ml-64 flex flex-col min-h-screen">
+    <div class="flex-1 mr-64 flex flex-col min-h-screen">
 
         {{-- Top Header --}}
         <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between">
-            <h1 class="text-lg font-semibold text-slate-800">@yield('kichwa', 'Dashibodi')</h1>
+            <h1 class="text-lg font-semibold text-slate-800">@yield('kichwa', 'لوحة التحكم')</h1>
             <div class="flex items-center gap-3">
                 <span class="inline-flex items-center gap-1.5 bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full border border-green-200">
                     <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                    Mfumo unafanya kazi
+                    النظام يعمل
                 </span>
             </div>
         </header>

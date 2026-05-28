@@ -1,5 +1,5 @@
 @extends('layout')
-@section('kichwa', 'Madeni')
+@section('kichwa', 'الديون')
 
 @section('maudhui')
 <div class="space-y-4">
@@ -11,7 +11,7 @@
                 <span class="text-xl font-bold text-orange-600">IQD</span>
             </div>
             <div>
-                <p class="text-sm text-slate-500">Jumla Madeni (IQD)</p>
+                <p class="text-sm text-slate-500">إجمالي الديون (IQD)</p>
                 <p class="text-2xl font-bold text-orange-700">{{ format_sarafu($jumla_iqd, 'IQD') }}</p>
             </div>
         </div>
@@ -20,7 +20,7 @@
                 <span class="text-xl font-bold text-green-600">$</span>
             </div>
             <div>
-                <p class="text-sm text-slate-500">Jumla Madeni (USD)</p>
+                <p class="text-sm text-slate-500">إجمالي الديون (USD)</p>
                 <p class="text-2xl font-bold text-green-700">{{ format_sarafu($jumla_usd, 'USD') }}</p>
             </div>
         </div>
@@ -30,30 +30,30 @@
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
         <form method="GET" class="flex flex-wrap gap-3 items-end">
             <div>
-                <label class="block text-xs font-medium text-slate-600 mb-1">Aina</label>
+                <label class="block text-xs font-medium text-slate-600 mb-1">النوع</label>
                 <select name="aina" class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="">Zote</option>
-                    <option value="deni"   {{ request('aina') === 'deni'  ? 'selected' : '' }}>Deni</option>
-                    <option value="awamu" {{ request('aina') === 'awamu' ? 'selected' : '' }}>Awamu</option>
+                    <option value="">الكل</option>
+                    <option value="deni"   {{ request('aina') === 'deni'  ? 'selected' : '' }}>دين</option>
+                    <option value="awamu" {{ request('aina') === 'awamu' ? 'selected' : '' }}>أقساط</option>
                 </select>
             </div>
             <div>
-                <label class="block text-xs font-medium text-slate-600 mb-1">Sarafu</label>
+                <label class="block text-xs font-medium text-slate-600 mb-1">العملة</label>
                 <select name="sarafu" class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="">Zote</option>
+                    <option value="">الكل</option>
                     <option value="IQD" {{ request('sarafu') === 'IQD' ? 'selected' : '' }}>IQD</option>
                     <option value="USD" {{ request('sarafu') === 'USD' ? 'selected' : '' }}>USD</option>
                 </select>
             </div>
             <div>
-                <label class="block text-xs font-medium text-slate-600 mb-1">Tafuta</label>
+                <label class="block text-xs font-medium text-slate-600 mb-1">بحث</label>
                 <input type="text" name="tafuta" value="{{ request('tafuta') }}"
-                       placeholder="Jina / Nambari..."
+                       placeholder="الاسم / الرقم..."
                        class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-44">
             </div>
-            <button type="submit" class="px-4 py-2 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800 font-medium">Chuja</button>
+            <button type="submit" class="px-4 py-2 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800 font-medium">تصفية</button>
             @if(request()->anyFilled(['aina','sarafu','tafuta']))
-                <a href="{{ route('madeni.index') }}" class="px-4 py-2 border border-slate-300 text-slate-600 rounded-lg text-sm hover:bg-slate-50">Futa</a>
+                <a href="{{ route('madeni.index') }}" class="px-4 py-2 border border-slate-300 text-slate-600 rounded-lg text-sm hover:bg-slate-50">مسح</a>
             @endif
         </form>
     </div>
@@ -61,8 +61,8 @@
     {{-- Debts Table --}}
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="px-6 py-4 border-b border-slate-100">
-            <h2 class="font-semibold text-slate-800">Madeni Yanayodaiwa
-                <span class="text-slate-400 font-normal text-sm ml-2">({{ $madeni->total() }})</span>
+            <h2 class="font-semibold text-slate-800">الديون المستحقة
+                <span class="text-slate-400 font-normal text-sm mr-2">({{ $madeni->total() }})</span>
             </h2>
         </div>
         @if($madeni->isEmpty())
@@ -72,22 +72,22 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                     </svg>
                 </div>
-                <p class="text-slate-500 font-medium">Hakuna madeni yanayodaiwa!</p>
-                <p class="text-slate-400 text-sm mt-1">Mauzo yote yamekamilika.</p>
+                <p class="text-slate-500 font-medium">لا توجد ديون مستحقة!</p>
+                <p class="text-slate-400 text-sm mt-1">جميع المبيعات مكتملة.</p>
             </div>
         @else
         <div class="overflow-x-auto">
             <table class="w-full text-sm">
                 <thead class="bg-slate-50">
                     <tr>
-                        <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Nambari</th>
-                        <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Mteja</th>
-                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">Aina</th>
-                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">Sarafu</th>
-                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">Jumla</th>
-                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">Salio</th>
-                        <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase">Tarehe</th>
-                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">Vitendo</th>
+                        <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase">الرقم</th>
+                        <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase">العميل</th>
+                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">النوع</th>
+                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">العملة</th>
+                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">الإجمالي</th>
+                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">الرصيد</th>
+                        <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase">التاريخ</th>
+                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">الإجراءات</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -107,14 +107,14 @@
                                     <p class="text-xs text-slate-400">{{ $u->mteja->simu }}</p>
                                 @endif
                             @else
-                                <span class="text-slate-400">Mgeni</span>
+                                <span class="text-slate-400">زبون عابر</span>
                             @endif
                         </td>
                         <td class="px-5 py-3 text-center">
                             @if($u->aina_malipo === 'deni')
-                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">Deni</span>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">دين</span>
                             @else
-                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">Awamu</span>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">أقساط</span>
                             @endif
                         </td>
                         <td class="px-5 py-3 text-center">

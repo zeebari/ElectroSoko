@@ -34,7 +34,7 @@ class BidhaaController extends Controller
             'maelezo'      => 'nullable|string',
         ]);
         Bidhaa::create($data);
-        return redirect()->route('bidhaa.index')->with('mafanikio', 'Bidhaa imeongezwa kikamilifu!');
+        return redirect()->route('bidhaa.index')->with('mafanikio', 'تم إضافة المنتج بنجاح!');
     }
 
     public function edit(Bidhaa $bidhaa)
@@ -53,12 +53,12 @@ class BidhaaController extends Controller
             'maelezo'      => 'nullable|string',
         ]);
         $bidhaa->update($data);
-        return redirect()->route('bidhaa.index')->with('mafanikio', 'Bidhaa imebadilishwa!');
+        return redirect()->route('bidhaa.index')->with('mafanikio', 'تم تعديل المنتج!');
     }
 
     public function destroy(Bidhaa $bidhaa)
     {
         $bidhaa->delete();
-        return redirect()->route('bidhaa.index')->with('mafanikio', 'Bidhaa imefutwa!');
+        return redirect()->route('bidhaa.index')->with('mafanikio', 'تم حذف المنتج!');
     }
 }
