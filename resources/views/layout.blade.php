@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="{{ lugha_sasa() === 'ar' ? 'ar' : (lugha_sasa() === 'ku_sorani' ? 'ckb' : 'kmr') }}" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,7 +28,7 @@
                 </div>
                 <div>
                     <p class="text-white font-bold text-base leading-tight">ElectroSoko</p>
-                    <p class="text-slate-400 text-xs">نظام إدارة المحل</p>
+                    <p class="text-slate-400 text-xs">{{ t('system_ok') }}</p>
                 </div>
             </div>
         </div>
@@ -41,7 +41,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
                 </svg>
-                لوحة التحكم
+                {{ t('dashboard') }}
             </a>
 
             <a href="{{ route('bidhaa.index') }}"
@@ -50,7 +50,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
                 </svg>
-                المنتجات
+                {{ t('nav_products') }}
             </a>
 
             <a href="{{ route('wateja.index') }}"
@@ -59,7 +59,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
-                العملاء
+                {{ t('nav_customers') }}
             </a>
 
             <a href="{{ route('mauzo.index') }}"
@@ -68,7 +68,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/>
                 </svg>
-                المبيعات
+                {{ t('nav_sales') }}
             </a>
 
             <a href="{{ route('madeni.index') }}"
@@ -77,7 +77,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                 </svg>
-                الديون
+                {{ t('nav_debts') }}
             </a>
 
             <a href="{{ route('jardi.index') }}"
@@ -86,7 +86,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"/>
                 </svg>
-                جرد المخزن
+                {{ t('nav_inventory') }}
             </a>
 
             <div class="pt-4 mt-4 border-t border-slate-700">
@@ -95,7 +95,7 @@
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/>
                     </svg>
-                    بيع جديد
+                    {{ t('nav_new_sale') }}
                 </a>
             </div>
         </nav>
@@ -111,11 +111,25 @@
 
         {{-- Top Header --}}
         <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between">
-            <h1 class="text-lg font-semibold text-slate-800">@yield('kichwa', 'لوحة التحكم')</h1>
+            <h1 class="text-lg font-semibold text-slate-800">@yield('kichwa', t('dashboard'))</h1>
             <div class="flex items-center gap-3">
+
+                {{-- Language Switcher --}}
+                <div class="flex items-center gap-1 bg-slate-100 rounded-lg p-1">
+                    <a href="{{ route('lugha.badilisha', 'ar') }}"
+                       title="العربية"
+                       class="px-2.5 py-1 rounded-md text-xs font-bold transition-all {{ lugha_sasa() === 'ar' ? 'bg-blue-600 text-white shadow' : 'text-slate-500 hover:text-slate-800' }}">ع</a>
+                    <a href="{{ route('lugha.badilisha', 'ku_sorani') }}"
+                       title="کوردی سۆرانی"
+                       class="px-2.5 py-1 rounded-md text-xs font-bold transition-all {{ lugha_sasa() === 'ku_sorani' ? 'bg-blue-600 text-white shadow' : 'text-slate-500 hover:text-slate-800' }}">ک</a>
+                    <a href="{{ route('lugha.badilisha', 'ku_badini') }}"
+                       title="کوردی بادینی"
+                       class="px-2.5 py-1 rounded-md text-xs font-bold transition-all {{ lugha_sasa() === 'ku_badini' ? 'bg-blue-600 text-white shadow' : 'text-slate-500 hover:text-slate-800' }}">ب</a>
+                </div>
+
                 <span class="inline-flex items-center gap-1.5 bg-green-50 text-green-700 text-xs font-medium px-3 py-1 rounded-full border border-green-200">
                     <span class="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
-                    النظام يعمل
+                    {{ t('system_ok') }}
                 </span>
             </div>
         </header>

@@ -1,5 +1,5 @@
 @extends('layout')
-@section('kichwa', 'العملاء')
+@section('kichwa', t('nav_customers'))
 
 @section('maudhui')
 <div class="space-y-4">
@@ -7,9 +7,9 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <form method="GET" class="flex gap-2 flex-1 max-w-sm">
             <input type="text" name="tafuta" value="{{ request('tafuta') }}"
-                   placeholder="بحث عن عميل..."
+                   placeholder="{{ t('search_customer') }}"
                    class="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <button type="submit" class="px-4 py-2 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800">بحث</button>
+            <button type="submit" class="px-4 py-2 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800">{{ t('search') }}</button>
         </form>
         <a href="{{ route('wateja.create') }}"
            class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors">
@@ -22,13 +22,13 @@
 
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="px-6 py-4 border-b border-slate-100">
-            <h2 class="font-semibold text-slate-800">قائمة العملاء
+            <h2 class="font-semibold text-slate-800">{{ t('customers_list') }}
                 <span class="text-slate-400 font-normal text-sm mr-2">({{ $wateja->total() }})</span>
             </h2>
         </div>
         @if($wateja->isEmpty())
             <div class="px-6 py-16 text-center">
-                <p class="text-slate-400 mb-3">لا يوجد عملاء بعد.</p>
+                <p class="text-slate-400 mb-3">{{ t('no_customers') }}</p>
                 <a href="{{ route('wateja.create') }}" class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
                     إضافة عميل
                 </a>
@@ -39,12 +39,12 @@
                 <thead class="bg-slate-50">
                     <tr>
                         <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">#</th>
-                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">الاسم</th>
-                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">الهاتف</th>
-                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">العنوان</th>
-                        <th class="px-6 py-3 text-center text-xs font-semibold text-slate-500 uppercase">العملة</th>
-                        <th class="px-6 py-3 text-center text-xs font-semibold text-slate-500 uppercase">المبيعات</th>
-                        <th class="px-6 py-3 text-center text-xs font-semibold text-slate-500 uppercase">الإجراءات</th>
+                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">{{ t('name') }}</th>
+                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">{{ t('phone') }}</th>
+                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">{{ t('address') }}</th>
+                        <th class="px-6 py-3 text-center text-xs font-semibold text-slate-500 uppercase">{{ t('currency') }}</th>
+                        <th class="px-6 py-3 text-center text-xs font-semibold text-slate-500 uppercase">{{ t('sales_count') }}</th>
+                        <th class="px-6 py-3 text-center text-xs font-semibold text-slate-500 uppercase">{{ t('actions') }}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -78,7 +78,7 @@
                                     تعديل
                                 </a>
                                 <form method="POST" action="{{ route('wateja.destroy', $m) }}"
-                                      onsubmit="return confirm('هل تريد حذف هذا العميل؟')">
+                                      onsubmit="return confirm('{{ t("confirm_delete_customer") }}')">
                                     @csrf @method('DELETE')
                                     <button type="submit"
                                             class="inline-flex items-center px-3 py-1.5 bg-red-50 text-red-700 rounded-lg text-xs font-medium hover:bg-red-100">

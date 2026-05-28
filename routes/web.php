@@ -25,3 +25,10 @@ Route::post('malipo/{uuzaji}', [MalipoController::class, 'store'])->name('malipo
 Route::get('madeni', [MadeniController::class, 'index'])->name('madeni.index');
 
 Route::get('jardi', [JardiController::class, 'index'])->name('jardi.index');
+
+Route::get('lugha/{lang}', function (string $lang) {
+    if (in_array($lang, ['ar', 'ku_sorani', 'ku_badini'])) {
+        session(['lugha' => $lang]);
+    }
+    return back();
+})->name('lugha.badilisha');

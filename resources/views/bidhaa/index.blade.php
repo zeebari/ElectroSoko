@@ -1,5 +1,5 @@
 @extends('layout')
-@section('kichwa', 'المنتجات')
+@section('kichwa', t('nav_products'))
 
 @section('maudhui')
 <div class="space-y-4">
@@ -7,10 +7,10 @@
     <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <form method="GET" class="flex gap-2 flex-1 max-w-sm">
             <input type="text" name="tafuta" value="{{ request('tafuta') }}"
-                   placeholder="بحث عن منتج..."
+                   placeholder="{{ t('search_product') }}"
                    class="flex-1 border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
             <button type="submit"
-                    class="px-4 py-2 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800">بحث</button>
+                    class="px-4 py-2 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800">{{ t('search') }}</button>
         </form>
         <a href="{{ route('bidhaa.create') }}"
            class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors">
@@ -23,13 +23,13 @@
 
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="px-6 py-4 border-b border-slate-100">
-            <h2 class="font-semibold text-slate-800">قائمة المنتجات
+            <h2 class="font-semibold text-slate-800">{{ t('products_list') }}
                 <span class="text-slate-400 font-normal text-sm mr-2">({{ $bidhaa->total() }} منتج)</span>
             </h2>
         </div>
         @if($bidhaa->isEmpty())
             <div class="px-6 py-16 text-center">
-                <p class="text-slate-400 mb-3">لا توجد منتجات. أضف المنتج الأول!</p>
+                <p class="text-slate-400 mb-3">{{ t('no_products') }}</p>
                 <a href="{{ route('bidhaa.create') }}" class="inline-flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-blue-700">
                     إضافة منتج
                 </a>
@@ -40,12 +40,12 @@
                 <thead class="bg-slate-50">
                     <tr>
                         <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">#</th>
-                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">اسم المنتج</th>
-                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">الفئة</th>
-                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">سعر الشراء</th>
-                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">سعر البيع</th>
-                        <th class="px-6 py-3 text-center text-xs font-semibold text-slate-500 uppercase">المخزون</th>
-                        <th class="px-6 py-3 text-center text-xs font-semibold text-slate-500 uppercase">الإجراءات</th>
+                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">{{ t('product_name') }}</th>
+                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">{{ t('category') }}</th>
+                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">{{ t('buy_price') }}</th>
+                        <th class="px-6 py-3 text-right text-xs font-semibold text-slate-500 uppercase">{{ t('sell_price') }}</th>
+                        <th class="px-6 py-3 text-center text-xs font-semibold text-slate-500 uppercase">{{ t('stock') }}</th>
+                        <th class="px-6 py-3 text-center text-xs font-semibold text-slate-500 uppercase">{{ t('actions') }}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -74,7 +74,7 @@
                                     تعديل
                                 </a>
                                 <form method="POST" action="{{ route('bidhaa.destroy', $b) }}"
-                                      onsubmit="return confirm('هل تريد حذف هذا المنتج؟')">
+                                      onsubmit="return confirm('{{ t("confirm_delete_product") }}')">
                                     @csrf @method('DELETE')
                                     <button type="submit"
                                             class="inline-flex items-center gap-1 px-3 py-1.5 bg-red-50 text-red-700 rounded-lg text-xs font-medium hover:bg-red-100 transition-colors">

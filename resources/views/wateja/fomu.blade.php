@@ -15,29 +15,29 @@
             @isset($mteja) @method('PUT') @endisset
 
             <div>
-                <label class="block text-sm font-medium text-slate-700 mb-1.5">الاسم الكامل <span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5">{{ t('full_name') }} <span class="text-red-500">*</span></label>
                 <input type="text" name="jina" value="{{ old('jina', $mteja->jina ?? '') }}"
                        required
                        class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                       placeholder="اسم العميل">
+                       placeholder="{{ t('full_name') }}">
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-slate-700 mb-1.5">رقم الهاتف</label>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5">{{ t('phone') }}</label>
                 <input type="text" name="simu" value="{{ old('simu', $mteja->simu ?? '') }}"
                        class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                        placeholder="+964 750 000 0000">
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-slate-700 mb-1.5">العنوان / الحي</label>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5">{{ t('address') }}</label>
                 <input type="text" name="anwani" value="{{ old('anwani', $mteja->anwani ?? '') }}"
                        class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                        placeholder="الحي، المدينة...">
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-slate-700 mb-1.5">العملة المفضلة <span class="text-red-500">*</span></label>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5">{{ t('preferred_currency') }} <span class="text-red-500">*</span></label>
                 <div class="grid grid-cols-2 gap-3">
                     <label class="relative cursor-pointer">
                         <input type="radio" name="sarafu_pendwa" value="IQD"
@@ -61,10 +61,10 @@
             </div>
 
             <div>
-                <label class="block text-sm font-medium text-slate-700 mb-1.5">ملاحظات (اختياري)</label>
+                <label class="block text-sm font-medium text-slate-700 mb-1.5">{{ t('notes') }} ({{ t('optional') }})</label>
                 <textarea name="maelezo" rows="2"
                           class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                          placeholder="ملاحظات إضافية...">{{ old('maelezo', $mteja->maelezo ?? '') }}</textarea>
+                          placeholder="{{ t('optional_notes') }}">{{ old('maelezo', $mteja->maelezo ?? '') }}</textarea>
             </div>
 
             <div class="flex gap-3 pt-1">

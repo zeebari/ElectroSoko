@@ -21,7 +21,8 @@
     },
     "autoload": {
         "files": [
-            "app/Helpers/sarafu.php"
+            "app/Helpers/sarafu.php",
+            "app/Helpers/tarjama.php"
         ],
         "psr-4": {
             "App\\": "app/",

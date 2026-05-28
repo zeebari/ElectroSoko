@@ -1,5 +1,5 @@
 @extends('layout')
-@section('kichwa', 'لوحة التحكم')
+@section('kichwa', t('dashboard'))
 
 @section('maudhui')
 <div class="space-y-6">
@@ -9,7 +9,7 @@
 
         <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
             <div class="flex items-center justify-between mb-3">
-                <p class="text-sm font-medium text-slate-500">مبيعات اليوم</p>
+                <p class="text-sm font-medium text-slate-500">{{ t('today_sales') }}</p>
                 <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center">
                     <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -18,12 +18,12 @@
                 </div>
             </div>
             <p class="text-3xl font-bold text-slate-800">{{ number_format($mauzo_leo) }}</p>
-            <p class="text-xs text-slate-400 mt-1">معاملات اليوم</p>
+            <p class="text-xs text-slate-400 mt-1">{{ t('today_transactions') }}</p>
         </div>
 
         <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
             <div class="flex items-center justify-between mb-3">
-                <p class="text-sm font-medium text-slate-500">إيرادات اليوم</p>
+                <p class="text-sm font-medium text-slate-500">{{ t('today_revenue') }}</p>
                 <div class="w-10 h-10 bg-green-50 rounded-xl flex items-center justify-center">
                     <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -32,12 +32,12 @@
                 </div>
             </div>
             <p class="text-2xl font-bold text-slate-800">{{ number_format($mapato_leo, 0) }}</p>
-            <p class="text-xs text-slate-400 mt-1">إجمالي المدفوع اليوم</p>
+            <p class="text-xs text-slate-400 mt-1">{{ t('today_total_paid') }}</p>
         </div>
 
         <div class="bg-white rounded-2xl p-5 border border-slate-200 shadow-sm">
             <div class="flex items-center justify-between mb-3">
-                <p class="text-sm font-medium text-slate-500">إجمالي الديون</p>
+                <p class="text-sm font-medium text-slate-500">{{ t('total_debts') }}</p>
                 <div class="w-10 h-10 bg-orange-50 rounded-xl flex items-center justify-center">
                     <svg class="w-5 h-5 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -137,7 +137,7 @@
     {{-- Recent Sales --}}
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
-            <h2 class="font-semibold text-slate-800">آخر المبيعات</h2>
+            <h2 class="font-semibold text-slate-800">{{ t('latest_sales') }}</h2>
             <a href="{{ route('mauzo.index') }}" class="text-sm text-blue-600 hover:text-blue-700 font-medium">عرض الكل ←</a>
         </div>
         @if($mauzo_hivi_karibuni->isEmpty())
@@ -173,11 +173,11 @@
                         <td class="px-6 py-3 text-slate-700">{{ $uuzaji->mteja?->jina ?? '—' }}</td>
                         <td class="px-6 py-3">
                             @if($uuzaji->aina_malipo === 'taslimu')
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">نقد</span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">{{ t('cash') }}</span>
                             @elseif($uuzaji->aina_malipo === 'deni')
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">دين</span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">{{ t('debt') }}</span>
                             @else
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">أقساط</span>
+                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">{{ t('installments') }}</span>
                             @endif
                         </td>
                         <td class="px-6 py-3 font-medium text-slate-800">{{ format_sarafu($uuzaji->jumla, $uuzaji->sarafu) }}</td>
@@ -186,9 +186,9 @@
                         </td>
                         <td class="px-6 py-3">
                             @if($uuzaji->hali === 'kumalizika')
-                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">مكتمل</span>
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">{{ t('completed') }}</span>
                             @else
-                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">مفتوح</span>
+                                <span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">{{ t('open') }}</span>
                             @endif
                         </td>
                         <td class="px-6 py-3 text-slate-500">{{ $uuzaji->tarehe->format('d/m/Y') }}</td>

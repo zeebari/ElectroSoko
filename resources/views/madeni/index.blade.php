@@ -1,5 +1,5 @@
 @extends('layout')
-@section('kichwa', 'الديون')
+@section('kichwa', t('nav_debts'))
 
 @section('maudhui')
 <div class="space-y-4">
@@ -11,7 +11,7 @@
                 <span class="text-xl font-bold text-orange-600">IQD</span>
             </div>
             <div>
-                <p class="text-sm text-slate-500">إجمالي الديون (IQD)</p>
+                <p class="text-sm text-slate-500">{{ t('total_debts_iqd') }}</p>
                 <p class="text-2xl font-bold text-orange-700">{{ format_sarafu($jumla_iqd, 'IQD') }}</p>
             </div>
         </div>
@@ -20,7 +20,7 @@
                 <span class="text-xl font-bold text-green-600">$</span>
             </div>
             <div>
-                <p class="text-sm text-slate-500">إجمالي الديون (USD)</p>
+                <p class="text-sm text-slate-500">{{ t('total_debts_usd') }}</p>
                 <p class="text-2xl font-bold text-green-700">{{ format_sarafu($jumla_usd, 'USD') }}</p>
             </div>
         </div>
@@ -30,17 +30,17 @@
     <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
         <form method="GET" class="flex flex-wrap gap-3 items-end">
             <div>
-                <label class="block text-xs font-medium text-slate-600 mb-1">النوع</label>
+                <label class="block text-xs font-medium text-slate-600 mb-1">{{ t('type') }}</label>
                 <select name="aina" class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="">الكل</option>
-                    <option value="deni"   {{ request('aina') === 'deni'  ? 'selected' : '' }}>دين</option>
-                    <option value="awamu" {{ request('aina') === 'awamu' ? 'selected' : '' }}>أقساط</option>
+                    <option value="">{{ t('all') }}</option>
+                    <option value="deni"   {{ request('aina') === 'deni'  ? 'selected' : '' }}>{{ t('debt') }}</option>
+                    <option value="awamu" {{ request('aina') === 'awamu' ? 'selected' : '' }}>{{ t('installments') }}</option>
                 </select>
             </div>
             <div>
-                <label class="block text-xs font-medium text-slate-600 mb-1">العملة</label>
+                <label class="block text-xs font-medium text-slate-600 mb-1">{{ t('currency') }}</label>
                 <select name="sarafu" class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <option value="">الكل</option>
+                    <option value="">{{ t('all') }}</option>
                     <option value="IQD" {{ request('sarafu') === 'IQD' ? 'selected' : '' }}>IQD</option>
                     <option value="USD" {{ request('sarafu') === 'USD' ? 'selected' : '' }}>USD</option>
                 </select>
@@ -48,12 +48,12 @@
             <div>
                 <label class="block text-xs font-medium text-slate-600 mb-1">بحث</label>
                 <input type="text" name="tafuta" value="{{ request('tafuta') }}"
-                       placeholder="الاسم / الرقم..."
+                       placeholder="{{ t('name') }} / {{ t('number') }}..."
                        class="border border-slate-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 w-44">
             </div>
-            <button type="submit" class="px-4 py-2 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800 font-medium">تصفية</button>
+            <button type="submit" class="px-4 py-2 bg-slate-700 text-white rounded-lg text-sm hover:bg-slate-800 font-medium">{{ t('filter') }}</button>
             @if(request()->anyFilled(['aina','sarafu','tafuta']))
-                <a href="{{ route('madeni.index') }}" class="px-4 py-2 border border-slate-300 text-slate-600 rounded-lg text-sm hover:bg-slate-50">مسح</a>
+                <a href="{{ route('madeni.index') }}" class="px-4 py-2 border border-slate-300 text-slate-600 rounded-lg text-sm hover:bg-slate-50">{{ t('clear') }}</a>
             @endif
         </form>
     </div>
@@ -73,7 +73,7 @@
                     </svg>
                 </div>
                 <p class="text-slate-500 font-medium">لا توجد ديون مستحقة!</p>
-                <p class="text-slate-400 text-sm mt-1">جميع المبيعات مكتملة.</p>
+                <p class="text-slate-400 text-sm mt-1">{{ t('all_complete') }}</p>
             </div>
         @else
         <div class="overflow-x-auto">
@@ -81,13 +81,13 @@
                 <thead class="bg-slate-50">
                     <tr>
                         <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">رقم الفاتورة</th>
-                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">العميل</th>
-                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">النوع</th>
-                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">العملة</th>
-                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">الإجمالي</th>
-                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">الرصيد</th>
-                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">التاريخ</th>
-                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">الإجراءات</th>
+                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">{{ t('customer') }}</th>
+                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">{{ t('type') }}</th>
+                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">{{ t('currency') }}</th>
+                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">{{ t('total') }}</th>
+                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">{{ t('balance') }}</th>
+                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">{{ t('date') }}</th>
+                        <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">{{ t('actions') }}</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-slate-100">
@@ -112,9 +112,9 @@
                         </td>
                         <td class="px-5 py-3 text-center">
                             @if($u->aina_malipo === 'deni')
-                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">دين</span>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-orange-100 text-orange-800">{{ t('debt') }}</span>
                             @else
-                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">أقساط</span>
+                                <span class="px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">{{ t('installments') }}</span>
                             @endif
                         </td>
                         <td class="px-5 py-3 text-center">

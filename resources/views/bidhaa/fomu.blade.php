@@ -1,5 +1,5 @@
 @extends('layout')
-@section('kichwa', isset($bidhaa) ? 'تعديل منتج' : 'إضافة منتج')
+@section('kichwa', isset(\$bidhaa) ? t('edit_product') : t('add_product'))
 
 @section('maudhui')
 <div class="max-w-2xl mx-auto">
@@ -16,7 +16,7 @@
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div class="sm:col-span-2">
-                    <label class="block text-sm font-medium text-slate-700 mb-1.5">اسم المنتج <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">{{ t('product_name') }} <span class="text-red-500">*</span></label>
                     <input type="text" name="jina" value="{{ old('jina', $bidhaa->jina ?? '') }}"
                            required
                            class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
@@ -24,37 +24,37 @@
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1.5">الفئة / التصنيف</label>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">{{ t('category') }}</label>
                     <input type="text" name="aina" value="{{ old('aina', $bidhaa->aina ?? '') }}"
                            class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                            placeholder="مثال: تلفاز، ثلاجة...">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1.5">كمية المخزون <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">{{ t('stock') }} <span class="text-red-500">*</span></label>
                     <input type="number" name="hisa" value="{{ old('hisa', $bidhaa->hisa ?? 0) }}"
                            min="0" required
                            class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1.5">سعر الشراء <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">{{ t('buy_price') }} <span class="text-red-500">*</span></label>
                     <input type="number" name="bei_ununuzi" value="{{ old('bei_ununuzi', $bidhaa->bei_ununuzi ?? 0) }}"
                            min="0" step="0.01" required
                            class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <p class="text-xs text-slate-400 mt-1">سعر التكلفة (سري)</p>
+                    <p class="text-xs text-slate-400 mt-1">{{ t('cost_secret') }}</p>
                 </div>
 
                 <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-1.5">سعر البيع <span class="text-red-500">*</span></label>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">{{ t('sell_price') }} <span class="text-red-500">*</span></label>
                     <input type="number" name="bei_uuzaji" value="{{ old('bei_uuzaji', $bidhaa->bei_uuzaji ?? '') }}"
                            min="0" step="0.01" required
                            class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                    <p class="text-xs text-slate-400 mt-1">السعر المعروض للعملاء</p>
+                    <p class="text-xs text-slate-400 mt-1">{{ t('price_for_customers') }}</p>
                 </div>
 
                 <div class="sm:col-span-2">
-                    <label class="block text-sm font-medium text-slate-700 mb-1.5">ملاحظات</label>
+                    <label class="block text-sm font-medium text-slate-700 mb-1.5">{{ t('notes') }}</label>
                     <textarea name="maelezo" rows="3"
                               class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                               placeholder="ملاحظات إضافية (اختياري)...">{{ old('maelezo', $bidhaa->maelezo ?? '') }}</textarea>
