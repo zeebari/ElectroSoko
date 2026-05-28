@@ -80,13 +80,13 @@
             <table class="w-full text-sm">
                 <thead class="bg-slate-50">
                     <tr>
-                        <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase">الرقم</th>
-                        <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase">العميل</th>
+                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">رقم الفاتورة</th>
+                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">العميل</th>
                         <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">النوع</th>
                         <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">العملة</th>
                         <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">الإجمالي</th>
                         <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">الرصيد</th>
-                        <th class="px-5 py-3 text-left text-xs font-semibold text-slate-500 uppercase">التاريخ</th>
+                        <th class="px-5 py-3 text-right text-xs font-semibold text-slate-500 uppercase">التاريخ</th>
                         <th class="px-5 py-3 text-center text-xs font-semibold text-slate-500 uppercase">الإجراءات</th>
                     </tr>
                 </thead>
@@ -107,7 +107,7 @@
                                     <p class="text-xs text-slate-400">{{ $u->mteja->simu }}</p>
                                 @endif
                             @else
-                                <span class="text-slate-400">زبون عابر</span>
+                                <span class="text-slate-400">زائر</span>
                             @endif
                         </td>
                         <td class="px-5 py-3 text-center">
@@ -126,7 +126,7 @@
                         <td class="px-5 py-3 text-center">
                             <a href="{{ route('mauzo.show', $u) }}"
                                class="px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-xs font-medium hover:bg-blue-100">
-                                Malipo
+                                دفعة
                             </a>
                         </td>
                     </tr>

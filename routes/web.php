@@ -8,6 +8,7 @@ use App\Http\Controllers\{
     MauzoController,
     MalipoController,
     MadeniController,
+    JardiController,
 };
 
 Route::get('/', [DashibodiController::class, 'index'])->name('dashibodi');
@@ -22,3 +23,5 @@ Route::resource('mauzo', MauzoController::class)->except(['edit', 'update']);
 Route::post('malipo/{uuzaji}', [MalipoController::class, 'store'])->name('malipo.store');
 
 Route::get('madeni', [MadeniController::class, 'index'])->name('madeni.index');
+
+Route::get('jardi', [JardiController::class, 'index'])->name('jardi.index');
